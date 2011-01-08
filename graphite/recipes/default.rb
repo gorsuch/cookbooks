@@ -13,7 +13,7 @@ package "libapache2-mod-wsgi"
 
 include_recipe "graphite::whisper"
 include_recipe "graphite::carbon"
-include_receipt "graphite::web"
+include_recipe "graphite::web"
 
 bash "start_carbon" do
   user "root"
