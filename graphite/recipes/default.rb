@@ -16,8 +16,11 @@ bash "install_whisper" do
   code <<-EOH
   wget "http://launchpad.net/graphite/trunk/0.9.6/+download/whisper-0.9.6.tar.gz"
   tar xzf whisper-0.9.6.tar.gz
+  rm whisper-0.9.6.tar.gz
   cd whisper-0.9.6
   python setup.py install
+  cd ..
+  rm -rf whisper-0.9.6
   EOH
 end
 
@@ -27,8 +30,11 @@ bash "install_carbon" do
   code <<-EOH
   wget "http://launchpad.net/graphite/trunk/0.9.6/+download/carbon-0.9.6.tar.gz"
   tar xzf carbon-0.9.6.tar.gz
+  rm carbon-0.9.6.tar.gz
   cd carbon-0.9.6
   python setup.py install
+  cd ..
+  rm -rf carbon-0.9.6
   EOH
 end
 
@@ -47,8 +53,11 @@ bash "install_graphite-web" do
   code <<-EOH
   wget "http://launchpad.net/graphite/trunk/0.9.6/+download/graphite-web-0.9.6.tar.gz"
   tar xzf graphite-web-0.9.6.tar.gz
+  rm graphite-web-0.9.6.tar.gz
   cd graphite-web-0.9.6
   python setup.py install
+  cd ..
+  rm -rf graphite-web-0.9.6
   EOH
 end
 
