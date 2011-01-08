@@ -41,12 +41,10 @@ bash "configure_carbon" do
   EOH
 end
 
-bash "configure_graphite_web" do
+bash "syncdb" do
   user "root"
-  cwd "/opt/graphite/conf"
+  cwd "/opt/graphite/webapp/graphite"
   code <<-EOH
-  cp carbon.conf.example carbon.conf
-  cp storage-schemas.conf.example storage-schemas.conf
+  python manage.py syncdb
   EOH
 end
-
