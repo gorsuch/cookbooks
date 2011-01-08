@@ -48,3 +48,19 @@ bash "syncdb" do
   python manage.py syncdb
   EOH
 end
+
+bash "install_local_settings" do
+  user "root"
+  cwd "/opt/graphite/webapp/graphite"
+  code <<-EOH
+  cp local_settings.py.example local_settings.py
+  EOH
+end
+
+bash "start_carbon" do
+  user "root"
+  cwd "/opt/graphite/"
+  code <<-EOH
+  ./bin/carbon-cache.py start
+  EOH
+end
