@@ -56,7 +56,7 @@ bash "syncdb" do
   user "root"
   cwd "/opt/graphite/webapp/graphite"
   code <<-EOH
-  python manage.py syncdb
+  python manage.py syncdb --noinput
   EOH
 end
 
