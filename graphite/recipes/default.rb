@@ -41,6 +41,17 @@ bash "configure_carbon" do
   EOH
 end
 
+bash "install_graphite-web" do
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/graphite-web-0.9.6.tar.gz"
+  tar xzf graphite-web-0.9.6.tar.gz
+  cd graphite-web-0.9.6
+  python setup.py install
+  EOH
+end
+
 bash "syncdb" do
   user "root"
   cwd "/opt/graphite/webapp/graphite"
