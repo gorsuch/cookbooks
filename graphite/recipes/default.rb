@@ -9,7 +9,10 @@
 
 package "python-cairo"
 package "python-django"
+package "apache2"
 package "libapache2-mod-wsgi"
+
+service "apache2"
 
 bash "install_whisper" do
   user "root"
@@ -100,6 +103,7 @@ cookbook_file "/etc/apache2/sites-enabled/001-graphite" do
   mode 0555
   owner "root"
   group "root"
+  notifies :restart, "service[apache2]"
 end
 
 bash "start_carbon" do
