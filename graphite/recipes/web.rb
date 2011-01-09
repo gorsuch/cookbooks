@@ -27,3 +27,17 @@ bash "install_local_settings" do
   cp local_settings.py.example local_settings.py
   EOH
 end
+
+cookbook_file "/opt/graphite/webapp/graphite/graphite.wsgi" do
+  source "graphite.wsgi"
+  mode 0555
+  owner "root"
+  group "root"
+end
+
+cookbook_file "/etc/apache2/sites_enabled/001-graphite" do
+  source "001-graphite"
+  mode 0555
+  owner "root"
+  group "root"
+end
