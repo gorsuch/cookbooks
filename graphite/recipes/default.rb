@@ -39,13 +39,18 @@ bash "install_carbon" do
   EOH
 end
 
-bash "configure_carbon" do
-  user "root"
-  cwd "/opt/graphite/conf"
-  code <<-EOH
-  cp carbon.conf.example carbon.conf
-  cp storage-schemas.conf.example storage-schemas.conf
-  EOH
+cookbook_file "/opt/graphite/conf/carbon.conf" do
+  source "carbon.conf"
+  mode 0555
+  owner "root"
+  group "root"
+end
+
+cookbook_file "/opt/graphite/conf/storage-schemas.conf" do
+  source "storage-schemas.conf"
+  mode 0555
+  owner "root"
+  group "root"
 end
 
 bash "install_graphite-web" do
@@ -70,12 +75,11 @@ bash "syncdb" do
   EOH
 end
 
-bash "install_local_settings" do
-  user "root"
-  cwd "/opt/graphite/webapp/graphite"
-  code <<-EOH
-  cp local_settings.py.example local_settings.py
-  EOH
+cookbook_file "/opt/graphite/webapp/graphite/local_settings.py" do
+  source "local_settings.py"
+  mode 0555
+  owner "root"
+  group "root"
 end
 
 cookbook_file "/opt/graphite/webapp/graphite/graphite.wsgi" do
