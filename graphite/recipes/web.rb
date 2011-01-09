@@ -35,7 +35,7 @@ cookbook_file "/opt/graphite/webapp/graphite/graphite.wsgi" do
   group "root"
 end
 
-cookbook_file "/etc/apache2/sites_enabled/001-graphite" do
+cookbook_file "/etc/apache2/sites-enabled/001-graphite" do
   source "001-graphite"
   mode 0555
   owner "root"
