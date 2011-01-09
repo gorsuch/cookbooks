@@ -53,7 +53,7 @@ cookbook_file "/opt/graphite/conf/storage-schemas.conf" do
   group "root"
 end
 
-bash "install_graphite-web" do
+bash "install_graphite" do
   user "root"
   cwd "/tmp"
   code <<-EOH
@@ -66,6 +66,13 @@ bash "install_graphite-web" do
   rm -rf graphite-web-0.9.6
   EOH
 end
+
+directory "/opt/graphite/storage/" do
+  owner "www-data"
+  group "www-data"
+  recursive true
+end
+
 
 bash "syncdb" do
   user "root"
