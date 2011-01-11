@@ -112,11 +112,14 @@ user "carbon" do
   shell "/bin/false"
 end
 
-directory "/data" do
-  owner "carbon"
-  group "root"
-  mode "0755"
-  action :create
+%w{whisper}.each do |dir|
+   directory "/data/#{dir}" do
+      mode 0775
+      owner "carbon"
+      group "root"
+      action :create
+      recursive true
+   end
 end
 
 bash "start_carbon" do
