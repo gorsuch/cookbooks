@@ -106,6 +106,19 @@ cookbook_file "/etc/apache2/sites-enabled/001-graphite" do
   notifies :restart, "service[apache2]"
 end
 
+user "carbon" do
+  comment "carbon account"
+  system true
+  shell "/bin/false"
+end
+
+directory "/data" do
+  owner "carbon"
+  group "root"
+  mode "0755"
+  action :create
+end
+
 bash "start_carbon" do
   user "root"
   cwd "/opt/graphite/"
