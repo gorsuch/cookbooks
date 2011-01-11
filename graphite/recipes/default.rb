@@ -70,12 +70,6 @@ bash "install_graphite" do
   EOH
 end
 
-bash "set_storage_perms" do
-  user "root"
-  cwd "/"
-  code "chown -R www-data:www-data /opt/graphite/storage"
-end
-
 cookbook_file "/opt/graphite/webapp/graphite/local_settings.py" do
   source "local_settings.py"
   mode 0555
@@ -130,6 +124,12 @@ bash "syncdb" do
   code <<-EOH
   python manage.py syncdb --noinput
   EOH
+end
+
+bash "set_storage_perms" do
+  user "root"
+  cwd "/"
+  code "chown -R www-data:www-data /data/db/graphite.db"
 end
 
 bash "start_carbon" do
