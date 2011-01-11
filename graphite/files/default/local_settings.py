@@ -1,5 +1,18 @@
 # Edit this file to override the default graphite settings, do not edit settings.py!!!
 
+WEB_DIR = dirname( abspath(__file__) ) + '/'
+WEBAPP_DIR = dirname( dirname(WEB_DIR) ) + '/'
+GRAPHITE_ROOT = dirname( dirname(WEBAPP_DIR) ) + '/'
+CONTENT_DIR = WEBAPP_DIR + 'content/'
+STORAGE_DIR = GRAPHITE_ROOT + 'storage/'
+WHISPER_DIR = STORAGE_DIR + 'whisper/'
+RRD_DIR = STORAGE_DIR + 'rrd/'
+LISTS_DIR = STORAGE_DIR + 'lists/'
+INDEX_FILE = STORAGE_DIR + 'index'
+WHITELIST_FILE = LISTS_DIR + 'whitelist'
+LOG_DIR = STORAGE_DIR + 'log/webapp/'
+CLUSTER_SERVERS = []
+
 # Turn on debugging and restart apache if you ever see an "Internal Server Error" page
 #DEBUG = True
 

@@ -112,7 +112,7 @@ user "carbon" do
   shell "/bin/false"
 end
 
-%w{whisper}.each do |dir|
+%w{index lists log/webapp rrd whisper}.each do |dir|
    directory "/data/#{dir}" do
       mode 0775
       owner "carbon"
