@@ -13,6 +13,13 @@ WHITELIST_FILE = LISTS_DIR + 'whitelist'
 LOG_DIR = STORAGE_DIR + 'log/webapp/'
 CLUSTER_SERVERS = []
 
+DATABASE_ENGINE = 'sqlite3'                     # 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
+DATABASE_NAME = STORAGE_DIR + 'db/graphite.db'     # Or path to database file if using sqlite3.
+DATABASE_USER = ''                              # Not used with sqlite3.
+DATABASE_PASSWORD = ''                          # Not used with sqlite3.
+DATABASE_HOST = ''                              # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''                              # Set to empty string for default. Not used with sqlite3.
+
 # Turn on debugging and restart apache if you ever see an "Internal Server Error" page
 #DEBUG = True
 

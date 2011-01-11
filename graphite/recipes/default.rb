@@ -70,14 +70,6 @@ bash "install_graphite" do
   EOH
 end
 
-bash "syncdb" do
-  user "root"
-  cwd "/opt/graphite/webapp/graphite"
-  code <<-EOH
-  python manage.py syncdb --noinput
-  EOH
-end
-
 bash "set_storage_perms" do
   user "root"
   cwd "/"
@@ -120,6 +112,21 @@ end
       action :create
       recursive true
    end
+end
+
+directory "/data/db" do
+  mode 0775
+  owner "www-data"
+  group "www-data"
+  action :create
+end
+
+bash "syncdb" do
+  user "root"
+  cwd "/opt/graphite/webapp/graphite"
+  code <<-EOH
+  python manage.py syncdb --noinput
+  EOH
 end
 
 bash "start_carbon" do
