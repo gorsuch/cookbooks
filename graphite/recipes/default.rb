@@ -114,11 +114,14 @@ end
    end
 end
 
-directory "/data/db" do
-  mode 0775
-  owner "www-data"
-  group "www-data"
-  action :create
+%w{db log/webapp}.each do |dir|
+   directory "/data/#{dir}" do
+      mode 0775
+      owner "www-data"
+      group "www-data"
+      action :create
+      recursive true
+   end
 end
 
 bash "syncdb" do
