@@ -7,6 +7,5 @@ h2. Caveats
 * everything is under the single default recipe
 * many things are installed via the "bash" resource, which means that they are run every time chef is run.  Not terrible, but not efficient.  These things should be moved to debian packages
 * carbon, the data collector, does not have an init script
-* carbon is currently running under the root user
 * there are not any firwalling rules in place, so anyone could theoretically insert data into carbon
 * we skip adding an administrative user to the web interface (based on Django)
