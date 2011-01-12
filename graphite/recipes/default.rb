@@ -59,6 +59,13 @@ cookbook_file "/opt/graphite/conf/storage-schemas.conf" do
   group "root"
 end
 
+cookbook_file "/etc/init/carbon.conf" do
+  source "carbon-upstart"
+  mode 0555
+  owner "root"
+  group "root"
+end
+
 unless File.exists?('/opt/graphite/webapp')
   bash "install_graphite" do
     user "root"
