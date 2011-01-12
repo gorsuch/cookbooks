@@ -148,7 +148,7 @@ end
 
 service "carbon" do
   name "carbon"
-  supports :restart => true
+  Chef::Provider::Service::Upstart
 end
 
 service "carbon" do
