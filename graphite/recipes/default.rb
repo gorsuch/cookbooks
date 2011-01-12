@@ -132,7 +132,7 @@ unless File.exists?('/data/db/graphite.db')
     EOH
   end
 
-  bash "set_storage_perms" do
+  bash "set_db_perms" do
     user "root"
     cwd "/"
     code "chown -R www-data:www-data /data/db/graphite.db"
