@@ -1,4 +1,8 @@
 start on startup
 expect daemon
 
-exec /opt/graphite/bin/carbon-cache.py start
+script
+cd /opt/graphite
+./bin/carbon-cache.py start
+end script
+
