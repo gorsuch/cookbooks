@@ -9,10 +9,9 @@
 
 package "python-cairo"
 package "python-django"
-package "apache2"
-package "libapache2-mod-wsgi"
 
-service "apache2"
+include_recipe "apache2"
+include_recipe "apache2::mod_wsgi"
 
 bash "install_whisper" do
   user "root"
