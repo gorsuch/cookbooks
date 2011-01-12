@@ -82,23 +82,23 @@ unless File.exists?('/opt/graphite/webapp')
   end
 end
 
-cookbook_file "/opt/graphite/webapp/graphite/local_settings.py" do
-  source "local_settings.py"
-  mode 0555
+cookbook_file "/opt/graphite/webapp/graphite/settings.py" do
+  source "settings.py"
+  mode 0444
   owner "root"
   group "root"
 end
 
 cookbook_file "/opt/graphite/webapp/graphite/graphite.wsgi" do
   source "graphite.wsgi"
-  mode 0555
+  mode 0444
   owner "root"
   group "root"
 end
 
 cookbook_file "/etc/apache2/sites-enabled/001-graphite" do
   source "apache-graphite"
-  mode 0555
+  mode 0444
   owner "root"
   group "root"
   notifies :restart, "service[apache2]"
