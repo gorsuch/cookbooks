@@ -59,18 +59,20 @@ cookbook_file "/opt/graphite/conf/storage-schemas.conf" do
   group "root"
 end
 
-bash "install_graphite" do
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/graphite-web-0.9.6.tar.gz"
-  tar xzf graphite-web-0.9.6.tar.gz
-  rm graphite-web-0.9.6.tar.gz
-  cd graphite-web-0.9.6
-  python setup.py install
-  cd ..
-  rm -rf graphite-web-0.9.6
-  EOH
+unless File.exists?('/opt/graphite/webapp')
+  bash "install_graphite" do
+    user "root"
+    cwd "/tmp"
+    code <<-EOH
+    wget "http://launchpad.net/graphite/trunk/0.9.6/+download/graphite-web-0.9.6.tar.gz"
+    tar xzf graphite-web-0.9.6.tar.gz
+    rm graphite-web-0.9.6.tar.gz
+    cd graphite-web-0.9.6
+    python setup.py install
+    cd ..
+    rm -rf graphite-web-0.9.6
+    EOH
+  end
 end
 
 cookbook_file "/opt/graphite/webapp/graphite/local_settings.py" do
@@ -121,18 +123,20 @@ end
    end
 end
 
-bash "syncdb" do
-  user "root"
-  cwd "/opt/graphite/webapp/graphite"
-  code <<-EOH
-  python manage.py syncdb --noinput
-  EOH
-end
+unless File.exists?('chown -R www-data:www-data /data/db/graphite.db')
+  bash "syncdb" do
+    user "root"
+    cwd "/opt/graphite/webapp/graphite"
+    code <<-EOH
+    python manage.py syncdb --noinput
+    EOH
+  end
 
-bash "set_storage_perms" do
-  user "root"
-  cwd "/"
-  code "chown -R www-data:www-data /data/db/graphite.db"
+  bash "set_storage_perms" do
+    user "root"
+    cwd "/"
+    code "chown -R www-data:www-data /data/db/graphite.db"
+  end
 end
 
 bash "start_carbon" do
