@@ -123,7 +123,7 @@ end
    end
 end
 
-unless File.exists?('chown -R www-data:www-data /data/db/graphite.db')
+unless File.exists?('/data/db/graphite.db')
   bash "syncdb" do
     user "root"
     cwd "/opt/graphite/webapp/graphite"
