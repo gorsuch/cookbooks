@@ -29,18 +29,20 @@ unless File.exists?('/usr/local/lib/python2.6/dist-packages/whisper.py')
   end
 end
 
-bash "install_carbon" do
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/carbon-0.9.6.tar.gz"
-  tar xzf carbon-0.9.6.tar.gz
-  rm carbon-0.9.6.tar.gz
-  cd carbon-0.9.6
-  python setup.py install
-  cd ..
-  rm -rf carbon-0.9.6
-  EOH
+unless File.exists?('/opt/graphite/bin/carbon-cache.py')
+  bash "install_carbon" do
+    user "root"
+    cwd "/tmp"
+    code <<-EOH
+    wget "http://launchpad.net/graphite/trunk/0.9.6/+download/carbon-0.9.6.tar.gz"
+    tar xzf carbon-0.9.6.tar.gz
+    rm carbon-0.9.6.tar.gz
+    cd carbon-0.9.6
+    python setup.py install
+    cd ..
+    rm -rf carbon-0.9.6
+    EOH
+  end
 end
 
 cookbook_file "/opt/graphite/conf/carbon.conf" do
