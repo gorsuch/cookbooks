@@ -1,1 +1,1 @@
-service 'collectd'
+package 'collectd'
