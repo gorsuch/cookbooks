@@ -146,10 +146,11 @@ unless File.exists?('/data/db/graphite.db')
   end
 end
 
-bash "start_carbon" do
-  user "root"
-  cwd "/opt/graphite/"
-  code <<-EOH
-  ./bin/carbon-cache.py start
-  EOH
+service "carbon" do
+  name "carbon"
+  supports :restart => true
+end
+
+service "carbon" do
+  action :start
 end
