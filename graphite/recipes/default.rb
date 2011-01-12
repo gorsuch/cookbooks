@@ -147,6 +147,7 @@ unless File.exists?('/data/db/graphite.db')
 end
 
 service "carbon" do
-  Chef::Provider::Service::Upstart
-  action :start
+  provider Chef::Provider::Service::Upstart
+  supports :status => true, :restart => true, :reload => true
+  action [ :enable, :start ]
 end
