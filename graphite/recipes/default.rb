@@ -13,7 +13,7 @@ include_recipe "python::django"
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
 
-unless File.exists?('whisper.py')
+unless File.exists?('/usr/local/lib/python2.6/dist-packages/whisper.py')
   bash "install_whisper" do
     user "root"
     cwd "/tmp"
