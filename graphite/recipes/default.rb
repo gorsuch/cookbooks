@@ -147,10 +147,6 @@ unless File.exists?('/data/db/graphite.db')
 end
 
 service "carbon" do
-  name "carbon"
   Chef::Provider::Service::Upstart
-end
-
-service "carbon" do
   action :start
 end
