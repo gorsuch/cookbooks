@@ -13,18 +13,20 @@ include_recipe "python::django"
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
 
-bash "install_whisper" do
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/whisper-0.9.6.tar.gz"
-  tar xzf whisper-0.9.6.tar.gz
-  rm whisper-0.9.6.tar.gz
-  cd whisper-0.9.6
-  python setup.py install
-  cd ..
-  rm -rf whisper-0.9.6
-  EOH
+unless File.exists?('whisper.py') do
+  bash "install_whisper" do
+    user "root"
+    cwd "/tmp"
+    code <<-EOH
+    wget "http://launchpad.net/graphite/trunk/0.9.6/+download/whisper-0.9.6.tar.gz"
+    tar xzf whisper-0.9.6.tar.gz
+    rm whisper-0.9.6.tar.gz
+    cd whisper-0.9.6
+    python setup.py install
+    cd ..
+    rm -rf whisper-0.9.6
+    EOH
+  end
 end
 
 bash "install_carbon" do
