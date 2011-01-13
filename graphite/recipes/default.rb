@@ -93,8 +93,8 @@ cookbook_file "/opt/graphite/webapp/graphite/graphite.wsgi" do
   group "root"
 end
 
-cookbook_file "/etc/apache2/sites-enabled/001-graphite" do
-  source "apache-graphite"
+template "/etc/apache2/sites-enabled/001-graphite" do
+  source "graphite-vhost.erb"
   mode 0444
   owner "root"
   group "root"
