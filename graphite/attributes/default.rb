@@ -3,7 +3,7 @@ default.graphite[:document_root]  = "/opt/graphite/webapp"
 default.graphite[:log_dir]        = "/data/log"
 default.graphite[:rrd_dir]        = "/data/rrd"
 default.graphite[:lists_dir]      = "/data/lists"
-default.graphtie[:storage_dir]    = "/data"
+default.graphite[:storage_dir]    = "/data"
 default.graphite[:whisper_dir]    = "/data/whisper"
 
 default.graphite[:index_file]     = "/data/index"
