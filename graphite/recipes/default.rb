@@ -124,14 +124,8 @@ bash "syncdb" do
   cwd "/opt/graphite/webapp/graphite"
   code <<-EOH
   python manage.py syncdb --noinput
+  chown -R www-data:www-data /data/db/graphite.db
   EOH
-end
-
-bash "set_db_perms" do
-  not_if {File.exists?('/data/db/graphite.db')}
-  user "root"
-  cwd "/"
-  code "chown -R www-data:www-data /data/db/graphite.db"
 end
 
 service "carbon" do
