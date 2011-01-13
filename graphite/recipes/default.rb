@@ -10,8 +10,8 @@ user node[:graphite][:carbon_user] do
   shell "/bin/false"
 end
 
-[node[:graphite][:log_dir], node[:graphite][:lists_dir], node[:graphite][:rrd_dir], node[:graphite][:whisper_dir]].each do |dir|
-   directory dir do
+[:log_dir, :lists_dir, :rrd_dir, :whisper_dir].each do |dir|
+   directory node[:graphite][dir] do
       mode 0775
       owner node[:graphite][:carbon_user]
       group "root"
@@ -20,8 +20,8 @@ end
    end
 end
 
-[node[:graphite][:db_dir], node[:graphite][:log_dir]].each do |dir|
-   directory dir do
+[:db_dir, :log_dir].each do |dir|
+   directory node[:graphite][dir] do
       mode 0775
       owner "www-data"
       group "www-data"
