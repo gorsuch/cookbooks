@@ -13,7 +13,7 @@ include_recipe "python::django"
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
 
-user "carbon" do
+user node[:graphite][:carbon_user] do
   comment "carbon account"
   system true
   shell "/bin/false"
@@ -126,10 +126,6 @@ template "/etc/apache2/sites-enabled/001-graphite" do
   group "root"
   notifies :restart, "service[apache2]"
 end
-
-
-
-
 
 bash "syncdb" do
   not_if {File.exists?('/data/db/graphite.db')}
