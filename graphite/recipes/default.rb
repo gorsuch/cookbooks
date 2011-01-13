@@ -58,7 +58,7 @@ cookbook_file "/opt/graphite/conf/storage-schemas.conf" do
 end
 
 template "/etc/init/carbon.conf" do
-  source "/etc/init/carbon.conf.erb"
+  source "carbon-upstart.conf.erb"
   mode 0444
   owner "root"
   group "root"
