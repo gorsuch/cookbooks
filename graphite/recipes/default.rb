@@ -13,7 +13,7 @@ end
 [node[:graphite][:log_dir], node[:graphite][:lists_dir], node[:graphite][:rrd_dir], node[:graphite][:whisper_dir]].each do |dir|
    directory dir do
       mode 0775
-      owner "carbon"
+      owner node[:graphite][:carbon_user]
       group "root"
       action :create
       recursive true
@@ -62,21 +62,21 @@ end
 
 template "/opt/graphite/conf/carbon.conf" do
   source "carbon.conf.erb"
-  mode 0444
+  mode 0644
   owner "root"
   group "root"
 end
 
 template "/opt/graphite/conf/storage-schemas.conf" do
   source "storage-schemas.conf.erb"
-  mode 0444
+  mode 0644
   owner "root"
   group "root"
 end
 
 template "/etc/init/carbon.conf" do
   source "carbon-upstart.conf.erb"
-  mode 0444
+  mode 0644
   owner "root"
   group "root"
 end
@@ -98,21 +98,21 @@ end
 
 template "/opt/graphite/webapp/graphite/settings.py" do
   source "settings.py.erb"
-  mode 0444
+  mode 0644
   owner "root"
   group "root"
 end
 
 template "/opt/graphite/webapp/graphite/graphite.wsgi" do
   source "graphite.wsgi.erb"
-  mode 0444
+  mode 0644
   owner "root"
   group "root"
 end
 
 template "/etc/apache2/sites-enabled/001-graphite" do
   source "graphite-vhost.erb"
-  mode 0444
+  mode 0644
   owner "root"
   group "root"
   notifies :restart, "service[apache2]"
