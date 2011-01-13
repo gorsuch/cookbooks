@@ -1,7 +1,12 @@
 default.graphite[:dir]            = "/opt/graphite"
 default.graphite[:document_root]  = "/opt/graphite/webapp"
+default.graphite[:index_file]     = "/data/index"
 default.graphite[:log_dir]        = "/data/log"
+default.graphite[:rrd_dir]    = "/data/rrd"
+default.graphite[:lists_dir]    = "/data/lists"
+default.graphtie[:storage_dir]    = "/data"
 default.graphite[:whisper_dir]    = "/data/whisper"
+default.graphite[:whitelist_file]    = "/data/lists/whitelist"
 
 default.graphite[:carbon_user]    = "carbon"
 default.graphite[:wsgi_path]      = "/opt/graphite/webapp/graphite/graphite.wsgi"
