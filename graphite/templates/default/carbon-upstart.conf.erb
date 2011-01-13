@@ -2,7 +2,7 @@ start on startup
 expect daemon
 
 script
-cd /opt/graphite
+cd <%= @node[:graphite][:dir] %>
 ./bin/carbon-cache.py start
 end script
 
