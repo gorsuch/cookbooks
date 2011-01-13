@@ -86,7 +86,7 @@ template "/opt/graphite/webapp/graphite/settings.py" do
   group "root"
 end
 
-cookbook_file "/opt/graphite/webapp/graphite/graphite.wsgi" do
+template "/opt/graphite/webapp/graphite/graphite.wsgi" do
   source "graphite.wsgi.erb"
   mode 0444
   owner "root"
