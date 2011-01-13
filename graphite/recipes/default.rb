@@ -13,6 +13,16 @@ include_recipe "python::django"
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
 
+[node[:graphite][:log_dir] node[:graphite][:lists_dir] node[:graphite][:log_dir] node[:graphite][:rrd_dir] node[:graphite][:whisper_dir]].each do |dir|
+   directory "/data/#{dir}" do
+      mode 0775
+      owner "carbon"
+      group "root"
+      action :create
+      recursive true
+   end
+end
+
 bash "install_whisper" do
   not_if {File.exists?('/usr/local/lib/python2.6/dist-packages/whisper.py')}
   user "root"
@@ -105,16 +115,6 @@ user "carbon" do
   comment "carbon account"
   system true
   shell "/bin/false"
-end
-
-%w{index lists log/webapp rrd whisper}.each do |dir|
-   directory "/data/#{dir}" do
-      mode 0775
-      owner "carbon"
-      group "root"
-      action :create
-      recursive true
-   end
 end
 
 %w{db log/webapp}.each do |dir|
