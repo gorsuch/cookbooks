@@ -101,6 +101,7 @@ template "/opt/graphite/webapp/graphite/settings.py" do
   mode 0644
   owner "root"
   group "root"
+  notifies :restart, "service[apache2]"
 end
 
 template "/opt/graphite/webapp/graphite/graphite.wsgi" do
@@ -108,6 +109,7 @@ template "/opt/graphite/webapp/graphite/graphite.wsgi" do
   mode 0644
   owner "root"
   group "root"
+  notifies :restart, "service[apache2]"
 end
 
 template "/etc/apache2/sites-enabled/001-graphite" do
