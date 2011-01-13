@@ -1,5 +1,7 @@
 default.graphite[:dir]            = "/opt/graphite"
 default.graphite[:document_root]  = "/opt/graphite/webapp"
+
+default.graphite[:db_dir]         = "/data/db"
 default.graphite[:log_dir]        = "/data/log"
 default.graphite[:rrd_dir]        = "/data/rrd"
 default.graphite[:lists_dir]      = "/data/lists"

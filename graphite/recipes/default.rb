@@ -13,11 +13,27 @@ include_recipe "python::django"
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
 
-[node[:graphite][:log_dir], node[:graphite][:lists_dir], node[:graphite][:log_dir], node[:graphite][:rrd_dir], node[:graphite][:whisper_dir]].each do |dir|
-   directory "/data/#{dir}" do
+user "carbon" do
+  comment "carbon account"
+  system true
+  shell "/bin/false"
+end
+
+[node[:graphite][:log_dir], node[:graphite][:lists_dir], node[:graphite][:rrd_dir], node[:graphite][:whisper_dir]].each do |dir|
+   directory dir do
       mode 0775
       owner "carbon"
       group "root"
+      action :create
+      recursive true
+   end
+end
+
+[node[:graphite][:db_dir], node[:graphite][:log_dir]].each do |dir|
+   directory dir do
+      mode 0775
+      owner "www-data"
+      group "www-data"
       action :create
       recursive true
    end
@@ -111,21 +127,9 @@ template "/etc/apache2/sites-enabled/001-graphite" do
   notifies :restart, "service[apache2]"
 end
 
-user "carbon" do
-  comment "carbon account"
-  system true
-  shell "/bin/false"
-end
 
-%w{db log/webapp}.each do |dir|
-   directory "/data/#{dir}" do
-      mode 0775
-      owner "www-data"
-      group "www-data"
-      action :create
-      recursive true
-   end
-end
+
+
 
 bash "syncdb" do
   not_if {File.exists?('/data/db/graphite.db')}
