@@ -43,15 +43,15 @@ bash "install_carbon" do
   EOH
 end
 
-cookbook_file "/opt/graphite/conf/carbon.conf" do
-  source "carbon.conf"
+template "/opt/graphite/conf/carbon.conf" do
+  source "carbon.conf.erb"
   mode 0555
   owner "root"
   group "root"
 end
 
-cookbook_file "/opt/graphite/conf/storage-schemas.conf" do
-  source "storage-schemas.conf"
+template "/opt/graphite/conf/storage-schemas.conf" do
+  source "storage-schemas.conf.erb"
   mode 0555
   owner "root"
   group "root"
@@ -79,15 +79,15 @@ bash "install_graphite" do
   EOH
 end
 
-cookbook_file "/opt/graphite/webapp/graphite/settings.py" do
-  source "settings.py"
+template "/opt/graphite/webapp/graphite/settings.py" do
+  source "settings.py.erb"
   mode 0444
   owner "root"
   group "root"
 end
 
 cookbook_file "/opt/graphite/webapp/graphite/graphite.wsgi" do
-  source "graphite.wsgi"
+  source "graphite.wsgi.erb"
   mode 0444
   owner "root"
   group "root"
