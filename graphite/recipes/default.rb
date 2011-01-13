@@ -45,14 +45,14 @@ end
 
 template "/opt/graphite/conf/carbon.conf" do
   source "carbon.conf.erb"
-  mode 0555
+  mode 0444
   owner "root"
   group "root"
 end
 
 template "/opt/graphite/conf/storage-schemas.conf" do
   source "storage-schemas.conf.erb"
-  mode 0555
+  mode 0444
   owner "root"
   group "root"
 end
