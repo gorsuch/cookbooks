@@ -13,36 +13,34 @@ include_recipe "python::django"
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
 
-unless File.exists?('/usr/local/lib/python2.6/dist-packages/whisper.py')
-  bash "install_whisper" do
-    user "root"
-    cwd "/tmp"
-    code <<-EOH
-    wget "http://launchpad.net/graphite/trunk/0.9.6/+download/whisper-0.9.6.tar.gz"
-    tar xzf whisper-0.9.6.tar.gz
-    rm whisper-0.9.6.tar.gz
-    cd whisper-0.9.6
-    python setup.py install
-    cd ..
-    rm -rf whisper-0.9.6
-    EOH
-  end
+bash "install_whisper" do
+  not_if {File.exists?('/usr/local/lib/python2.6/dist-packages/whisper.py')}
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/whisper-0.9.6.tar.gz"
+  tar xzf whisper-0.9.6.tar.gz
+  rm whisper-0.9.6.tar.gz
+  cd whisper-0.9.6
+  python setup.py install
+  cd ..
+  rm -rf whisper-0.9.6
+  EOH
 end
 
-unless File.exists?('/opt/graphite/bin/carbon-cache.py')
-  bash "install_carbon" do
-    user "root"
-    cwd "/tmp"
-    code <<-EOH
-    wget "http://launchpad.net/graphite/trunk/0.9.6/+download/carbon-0.9.6.tar.gz"
-    tar xzf carbon-0.9.6.tar.gz
-    rm carbon-0.9.6.tar.gz
-    cd carbon-0.9.6
-    python setup.py install
-    cd ..
-    rm -rf carbon-0.9.6
-    EOH
-  end
+bash "install_carbon" do
+  not_if {File.exists?('/opt/graphite/bin/carbon-cache.py')}
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/carbon-0.9.6.tar.gz"
+  tar xzf carbon-0.9.6.tar.gz
+  rm carbon-0.9.6.tar.gz
+  cd carbon-0.9.6
+  python setup.py install
+  cd ..
+  rm -rf carbon-0.9.6
+  EOH
 end
 
 cookbook_file "/opt/graphite/conf/carbon.conf" do
@@ -66,20 +64,19 @@ cookbook_file "/etc/init/carbon.conf" do
   group "root"
 end
 
-unless File.exists?('/opt/graphite/webapp')
-  bash "install_graphite" do
-    user "root"
-    cwd "/tmp"
-    code <<-EOH
-    wget "http://launchpad.net/graphite/trunk/0.9.6/+download/graphite-web-0.9.6.tar.gz"
-    tar xzf graphite-web-0.9.6.tar.gz
-    rm graphite-web-0.9.6.tar.gz
-    cd graphite-web-0.9.6
-    python setup.py install
-    cd ..
-    rm -rf graphite-web-0.9.6
-    EOH
-  end
+bash "install_graphite" do
+  not_if {File.exists?('/opt/graphite/webapp')}
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/graphite-web-0.9.6.tar.gz"
+  tar xzf graphite-web-0.9.6.tar.gz
+  rm graphite-web-0.9.6.tar.gz
+  cd graphite-web-0.9.6
+  python setup.py install
+  cd ..
+  rm -rf graphite-web-0.9.6
+  EOH
 end
 
 cookbook_file "/opt/graphite/webapp/graphite/settings.py" do
@@ -130,20 +127,20 @@ end
    end
 end
 
-unless File.exists?('/data/db/graphite.db')
-  bash "syncdb" do
-    user "root"
-    cwd "/opt/graphite/webapp/graphite"
-    code <<-EOH
-    python manage.py syncdb --noinput
-    EOH
-  end
+bash "syncdb" do
+  not_if {File.exists?('/data/db/graphite.db')}
+  user "root"
+  cwd "/opt/graphite/webapp/graphite"
+  code <<-EOH
+  python manage.py syncdb --noinput
+  EOH
+end
 
-  bash "set_db_perms" do
-    user "root"
-    cwd "/"
-    code "chown -R www-data:www-data /data/db/graphite.db"
-  end
+bash "set_db_perms" do
+  not_if {File.exists?('/data/db/graphite.db')}
+  user "root"
+  cwd "/"
+  code "chown -R www-data:www-data /data/db/graphite.db"
 end
 
 service "carbon" do
