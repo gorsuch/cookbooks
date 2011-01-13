@@ -13,7 +13,7 @@ include_recipe "python::django"
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
 
-[node[:graphite][:log_dir] node[:graphite][:lists_dir] node[:graphite][:log_dir] node[:graphite][:rrd_dir] node[:graphite][:whisper_dir]].each do |dir|
+[node[:graphite][:log_dir], node[:graphite][:lists_dir], node[:graphite][:log_dir], node[:graphite][:rrd_dir], node[:graphite][:whisper_dir]].each do |dir|
    directory "/data/#{dir}" do
       mode 0775
       owner "carbon"
