@@ -1,3 +1,6 @@
+default.graphite[:deb_cache]      = "/root/cache"
+default.graphite[:graphite_deb_version] = "0.9.6-1_all"
+
 default.graphite[:dir]            = "/opt/graphite"
 default.graphite[:document_root]  = "/opt/graphite/webapp"
 

@@ -30,20 +30,20 @@ end
    end
 end
 
-Directory "/root/cache" do
+Directory node[:graphite][:deb_cache] do
   action :create
 end
 
-remote_file "/root/cache/python-whisper_0.9.6-1_all.deb" do
-  source "https://s3.amazonaws.com/gorsuch-dpkg/python-whisper_0.9.6-1_all.deb"
+remote_file "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb" do
+  source "https://s3.amazonaws.com/gorsuch-dpkg/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
-remote_file "/root/cache/python-carbon_0.9.6-1_all.deb" do
-  source "https://s3.amazonaws.com/gorsuch-dpkg/python-carbon_0.9.6-1_all.deb"
+remote_file "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb" do
+  source "https://s3.amazonaws.com/gorsuch-dpkg/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
-remote_file "/root/cache/python-graphite-web_0.9.6-1_all.deb" do
-  source "https://s3.amazonaws.com/gorsuch-dpkg/python-graphite-web_0.9.6-1_all.deb"
+remote_file "#{node[:graphite][:deb_cache]}/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb" do
+  source "https://s3.amazonaws.com/gorsuch-dpkg/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
 bash "install_whisper" do
