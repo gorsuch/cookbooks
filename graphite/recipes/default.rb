@@ -104,9 +104,9 @@ template "/etc/apache2/sites-enabled/001-graphite" do
 end
 
 bash "syncdb" do
-  not_if {File.exists?('/data/db/graphite.db')}
+  not_if {File.exists?("#{node[:graphite][:db_name]}")}
   user "root"
-  cwd "/opt/graphite/webapp/graphite"
+  cwd "#{node[:graphite][:dir]}/webapp/graphite"
   code <<-EOH
   python manage.py syncdb --noinput
   chown -R www-data:www-data /data/db/graphite.db
