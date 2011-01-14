@@ -58,14 +58,14 @@ dpkg_package "python-graphite-web" do
   source "#{node[:graphite][:deb_cache]}/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
-template "/opt/graphite/conf/carbon.conf" do
+template "#{node[:graphite][:dir]}/conf/carbon.conf" do
   source "carbon.conf.erb"
   mode 0644
   owner "root"
   group "root"
 end
 
-template "/opt/graphite/conf/storage-schemas.conf" do
+template "#{node[:graphite][:dir]}/conf/storage-schemas.conf" do
   source "storage-schemas.conf.erb"
   mode 0644
   owner "root"
@@ -79,7 +79,7 @@ template "/etc/init/carbon.conf" do
   group "root"
 end
 
-template "/opt/graphite/webapp/graphite/settings.py" do
+template "#{node[:graphite][:dir]}/webapp/graphite/settings.py" do
   source "settings.py.erb"
   mode 0644
   owner "root"
@@ -87,7 +87,7 @@ template "/opt/graphite/webapp/graphite/settings.py" do
   notifies :restart, "service[apache2]"
 end
 
-template "/opt/graphite/webapp/graphite/graphite.wsgi" do
+template "#{node[:graphite][:dir]}/webapp/graphite/graphite.wsgi" do
   source "graphite.wsgi.erb"
   mode 0644
   owner "root"
