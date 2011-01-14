@@ -35,15 +35,15 @@ Directory "/root/cache" do
 end
 
 remote_file "/root/cache/python-whisper_0.9.6-1_all.deb" do
-  sournce "https://s3.amazonaws.com/gorsuch-dpkg/python-whisper_0.9.6-1_all.deb"
+  source "https://s3.amazonaws.com/gorsuch-dpkg/python-whisper_0.9.6-1_all.deb"
 end
 
 remote_file "/root/cache/python-carbon_0.9.6-1_all.deb" do
-  sournce "https://s3.amazonaws.com/gorsuch-dpkg/python-carbon_0.9.6-1_all.deb"
+  source "https://s3.amazonaws.com/gorsuch-dpkg/python-carbon_0.9.6-1_all.deb"
 end
 
 remote_file "/root/cache/python-graphite-web_0.9.6-1_all.deb" do
-  sournce "https://s3.amazonaws.com/gorsuch-dpkg/python-graphite-web_0.9.6-1_all.deb"
+  source "https://s3.amazonaws.com/gorsuch-dpkg/python-graphite-web_0.9.6-1_all.deb"
 end
 
 bash "install_whisper" do
