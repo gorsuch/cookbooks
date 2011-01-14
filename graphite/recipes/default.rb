@@ -95,6 +95,7 @@ template "#{node[:graphite][:dir]}/webapp/graphite/graphite.wsgi" do
   notifies :restart, "service[apache2]"
 end
 
+# the next two actions are really, really cheap.  Please replace.
 template "/etc/apache2/sites-enabled/001-graphite" do
   source "graphite-vhost.erb"
   mode 0644
@@ -107,7 +108,6 @@ file "/etc/apache2/sites-enabled/000-default" do
   action :delete
   notifies :restart, "service[apache2]"
 end
-
 
 bash "syncdb" do
   not_if {File.exists?("#{node[:graphite][:db_name]}")}
