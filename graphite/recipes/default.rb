@@ -48,12 +48,14 @@ end
 
 dpkg_package "python-whisper" do
   source "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
-  action :upgrade
 end
 
 dpkg_package "python-carbon" do
   source "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb"
-  action :upgrade
+end
+
+dpkg_package "python-graphite-web" do
+  source "#{node[:graphite][:deb_cache]}/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
 template "/opt/graphite/conf/carbon.conf" do
@@ -75,21 +77,6 @@ template "/etc/init/carbon.conf" do
   mode 0644
   owner "root"
   group "root"
-end
-
-bash "install_graphite" do
-  not_if {File.exists?('/opt/graphite/webapp')}
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/graphite-web-0.9.6.tar.gz"
-  tar xzf graphite-web-0.9.6.tar.gz
-  rm graphite-web-0.9.6.tar.gz
-  cd graphite-web-0.9.6
-  python setup.py install
-  cd ..
-  rm -rf graphite-web-0.9.6
-  EOH
 end
 
 template "/opt/graphite/webapp/graphite/settings.py" do
