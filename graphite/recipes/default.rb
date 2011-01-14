@@ -103,6 +103,12 @@ template "/etc/apache2/sites-enabled/001-graphite" do
   notifies :restart, "service[apache2]"
 end
 
+file "/etc/apache2/sites-enabled/000-default" do
+  action :delete
+  notifies :restart, "service[apache2]"
+end
+
+
 bash "syncdb" do
   not_if {File.exists?("#{node[:graphite][:db_name]}")}
   user "root"

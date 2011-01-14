@@ -1,5 +1,4 @@
 <VirtualHost *:80>
-    ServerName graphite
     DocumentRoot "<%= @node[:graphite][:document_root] %>"
     ErrorLog <%= @node[:graphite][:log_dir] %>/error.log
     CustomLog <%= @node[:graphite][:log_dir] %>/access.log common
