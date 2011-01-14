@@ -48,36 +48,12 @@ end
 
 dpkg_package "python-whisper" do
   source "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
+  action :upgrade
 end
 
-bash "install_whisper" do
-  not_if {File.exists?('/usr/local/lib/python2.6/dist-packages/whisper.py')}
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/whisper-0.9.6.tar.gz"
-  tar xzf whisper-0.9.6.tar.gz
-  rm whisper-0.9.6.tar.gz
-  cd whisper-0.9.6
-  python setup.py install
-  cd ..
-  rm -rf whisper-0.9.6
-  EOH
-end
-
-bash "install_carbon" do
-  not_if {File.exists?('/opt/graphite/bin/carbon-cache.py')}
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-  wget "http://launchpad.net/graphite/trunk/0.9.6/+download/carbon-0.9.6.tar.gz"
-  tar xzf carbon-0.9.6.tar.gz
-  rm carbon-0.9.6.tar.gz
-  cd carbon-0.9.6
-  python setup.py install
-  cd ..
-  rm -rf carbon-0.9.6
-  EOH
+dpkg_package "python-carbon" do
+  source "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb"
+  action :upgrade
 end
 
 template "/opt/graphite/conf/carbon.conf" do
