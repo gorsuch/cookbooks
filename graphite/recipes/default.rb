@@ -46,9 +46,7 @@ remote_file "#{node[:graphite][:deb_cache]}/python-graphite-web_#{node[:graphite
   source "#{node[:graphite][:deb_source]}/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
-dpkg_package "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb" do
-  action :install
-end
+dpkg_package "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
 
 bash "install_whisper" do
   not_if {File.exists?('/usr/local/lib/python2.6/dist-packages/whisper.py')}
