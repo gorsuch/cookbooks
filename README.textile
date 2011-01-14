@@ -4,5 +4,5 @@ Here you'll find a few cookbooks intended to aid in my "attempt to build a graph
 
 h2. Caveats
 
-* many things are installed via the "bash" resource, which means that they are run every time chef is run.  Not terrible, but not efficient.  These things should be moved to debian packages
 * we skip adding an administrative user to the web interface (based on Django)
+* cheap method of making the graphite site the default.  Won't play well with others.
