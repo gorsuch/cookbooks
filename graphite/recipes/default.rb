@@ -35,15 +35,15 @@ Directory node[:graphite][:deb_cache] do
 end
 
 remote_file "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb" do
-  source "https://s3.amazonaws.com/gorsuch-dpkg/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
+  source "#{node[:graphite][:deb_source]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
 remote_file "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb" do
-  source "https://s3.amazonaws.com/gorsuch-dpkg/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb"
+  source "#{node[:graphite][:deb_source]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
 remote_file "#{node[:graphite][:deb_cache]}/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb" do
-  source "https://s3.amazonaws.com/gorsuch-dpkg/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb"
+  source "#{node[:graphite][:deb_source]}/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb"
 end
 
 bash "install_whisper" do
