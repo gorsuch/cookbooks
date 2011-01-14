@@ -6,3 +6,4 @@ h2. Caveats
 
 * we skip adding an administrative user to the web interface (based on Django)
 * cheap method of making the graphite site the default.  Won't play well with others.
+* collectd recipe needs to put its rrds into the graphite pool automatically
