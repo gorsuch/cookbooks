@@ -16,6 +16,16 @@ try:
 except:
   DATA_DIRS = [WHISPER_DIR]
 
+#Default Store configuration and templates
+try:
+  from graphite.storage import Store
+except ImportError:
+  print 'Failed to import graphite.storage module, debug information follows.'
+  print '__file__ = %s' % __file__
+  print 'sys.path = %s' % sys.path
+  print 'pwd = %s' % os.getcwd()
+  raise SystemExit(1)
+
 LOCAL_STORE = Store(DATA_DIRS)
 STORE = Store(DATA_DIRS, remote_hosts=CLUSTER_SERVERS)
 
