@@ -1,2 +1,2 @@
 package 'collectd'
-package 'python-rrdtool'
+include_recipe "python::rrdtool"

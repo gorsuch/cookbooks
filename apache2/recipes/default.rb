@@ -20,3 +20,7 @@ end
 service "apache2" do
   action :start
 end
+
+apache_site "default" do
+  enable false
+end
