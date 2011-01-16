@@ -96,7 +96,6 @@ template "#{node[:graphite][:dir]}/webapp/graphite/graphite.wsgi" do
   notifies :restart, "service[apache2]"
 end
 
-# the next action is really, really cheap.  Please replace.
 template "/etc/apache2/sites-available/graphite" do
   source "graphite-vhost.erb"
   mode 0644
