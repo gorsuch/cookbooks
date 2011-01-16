@@ -1,8 +1,8 @@
 default.graphite[:deb_cache]      = "/root/cache"
 
-default.graphite[:whisper_deb_version] = "0.9.7-1_all"
-default.graphite[:carbon_deb_version] = "0.9.7-1_all"
-default.graphite[:graphite_deb_version] = "0.9.7b-1_all"
+default.graphite[:whisper_deb_version] = "0.9.6-1_all"
+default.graphite[:carbon_deb_version] = "0.9.6-1_all"
+default.graphite[:graphite_deb_version] = "0.9.6-1_all"
 default.graphite[:deb_source]     = "https://s3.amazonaws.com/gorsuch-dpkg"
 
 default.graphite[:dir]            = "/opt/graphite"
