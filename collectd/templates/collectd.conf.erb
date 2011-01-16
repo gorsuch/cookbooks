@@ -1,0 +1,30 @@
+# this is a minimal collectd configuration
+
+FQDNLookup false
+LoadPlugin syslog
+
+<Plugin syslog>
+	LogLevel info
+</Plugin>
+
+LoadPlugin battery
+LoadPlugin cpu
+LoadPlugin df
+LoadPlugin disk
+LoadPlugin entropy
+LoadPlugin interface
+LoadPlugin irq
+LoadPlugin load
+LoadPlugin memory
+LoadPlugin processes
+LoadPlugin rrdtool
+LoadPlugin swap
+LoadPlugin users
+
+<Plugin rrdtool>
+	DataDir "<%= node[:collectd][:rrd_dir] %>"
+</Plugin>
+
+Include "<%= node[:collectd][:dir] %>/filters.conf"
+Include "<%= node[:collectd][:dir] %>/thresholds.conf"
+
