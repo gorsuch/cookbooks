@@ -96,13 +96,14 @@ template "#{node[:graphite][:dir]}/webapp/graphite/graphite.wsgi" do
 end
 
 # the next action is really, really cheap.  Please replace.
-template "/etc/apache2/sites-enabled/001-graphite" do
+template "/etc/apache2/sites-available/graphite" do
   source "graphite-vhost.erb"
   mode 0644
   owner "root"
   group "root"
-  notifies :restart, "service[apache2]"
 end
+
+apache_site "graphite"
 
 bash "syncdb" do
   not_if {File.exists?("#{node[:graphite][:db_name]}")}
