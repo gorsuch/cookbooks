@@ -79,8 +79,8 @@ template "/etc/init/carbon.conf" do
   group "root"
 end
 
-template "#{node[:graphite][:dir]}/webapp/graphite/settings.py" do
-  source "settings.py.erb"
+template "#{node[:graphite][:dir]}/webapp/graphite/local_settings.py" do
+  source "local_settings.py.erb"
   mode 0644
   owner "root"
   group "root"

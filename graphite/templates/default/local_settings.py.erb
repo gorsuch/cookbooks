@@ -1,0 +1,24 @@
+import sys, os
+from os.path import join, dirname, abspath
+
+STORAGE_DIR = '<%= @node[:graphite][:storage_dir] %>/'
+WHISPER_DIR = '<%= @node[:graphite][:whisper_dir] %>/'
+RRD_DIR = '<%= @node[:graphite][:rrd_dir] %>/'
+LISTS_DIR = '<%= @node[:graphite][:lists_dir] %>/'
+INDEX_FILE = '<%= @node[:graphite][:index_file] %>'
+WHITELIST_FILE = '<%= @node[:graphite][:whitelist_file] %>'
+LOG_DIR = '<%= @node[:graphite][:log_dir] %>'
+
+try:
+  import rrdtool
+  DATA_DIRS = [WHISPER_DIR, RRD_DIR]
+except:
+  DATA_DIRS = [WHISPER_DIR]
+
+#Database settings, sqlite is intended for single-server setups
+DATABASE_ENGINE 	= '<%= @node[:graphite][:db_engine] %>'
+DATABASE_NAME 		= '<%= @node[:graphite][:db_name] %>'
+DATABASE_USER 		= '<%= @node[:graphite][:db_username] %>'
+DATABASE_PASSWORD 	= '<%= @node[:graphite][:db_password] %>'
+DATABASE_HOST 		= '<%= @node[:graphite][:db_host] %>'
+DATABASE_PORT 		= '<%= @node[:graphite][:db_port] %>'
