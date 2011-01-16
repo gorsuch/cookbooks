@@ -34,12 +34,12 @@ Directory node[:graphite][:deb_cache] do
   action :create
 end
 
-remote_file "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb" do
-  source "#{node[:graphite][:deb_source]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
+remote_file "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:whisper_deb_version]}.deb" do
+  source "#{node[:graphite][:deb_source]}/python-whisper_#{node[:graphite][:whisper_deb_version]}.deb"
 end
 
-remote_file "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb" do
-  source "#{node[:graphite][:deb_source]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb"
+remote_file "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:carbon_deb_version]}.deb" do
+  source "#{node[:graphite][:deb_source]}/python-carbon_#{node[:graphite][:carbon_deb_version]}.deb"
 end
 
 remote_file "#{node[:graphite][:deb_cache]}/python-graphite-web_#{node[:graphite][:graphite_deb_version]}.deb" do
