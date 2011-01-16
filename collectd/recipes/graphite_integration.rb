@@ -2,5 +2,5 @@ include_recipe "graphite"
 
 bash "link_collectd_rrds" do
   user "root"
-  code "ln -s /var/lib/collectd/rrd /data/rrd/collectd"
+  code "ln -s #{node[:collectd][:rrd_dir]} #{node[:graphite][:rrd_dir]}/collectd"
 end
