@@ -1,4 +1,5 @@
 include_recipe "graphite"
+include_recipe "collectd"
 
 bash "link_collectd_rrds" do
   user "root"
