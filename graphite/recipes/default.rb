@@ -47,11 +47,11 @@ remote_file "#{node[:graphite][:deb_cache]}/python-graphite-web_#{node[:graphite
 end
 
 dpkg_package "python-whisper" do
-  source "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:graphite_deb_version]}.deb"
+  source "#{node[:graphite][:deb_cache]}/python-whisper_#{node[:graphite][:whisper_deb_version]}.deb"
 end
 
 dpkg_package "python-carbon" do
-  source "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:graphite_deb_version]}.deb"
+  source "#{node[:graphite][:deb_cache]}/python-carbon_#{node[:graphite][:carbon_deb_version]}.deb"
 end
 
 dpkg_package "python-graphite-web" do
