@@ -12,8 +12,8 @@
 	  Allow from all	
 	</Directory>
 
-     Alias /media/ "@DJANGO_ROOT@/contrib/admin/media/"
-	<Directory @DJANGO_ROOT@/contrib/admin/media>
+     Alias /media/ "<%= @node[:python][:django_root] %>/contrib/admin/media/"
+	<Directory <%= @node[:python][:django_root] %>/contrib/admin/media>
 	  Order deny,allow
 	  Allow from all
 	</Directory>

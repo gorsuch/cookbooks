@@ -20,9 +20,9 @@ LoadPlugin rrdtool
 LoadPlugin users
 
 <Plugin rrdtool>
-	DataDir "<%= node[:collectd][:rrd_dir] %>"
+	DataDir "<%= @node[:collectd][:rrd_dir] %>"
 </Plugin>
 
-Include "<%= node[:collectd][:dir] %>/filters.conf"
-Include "<%= node[:collectd][:dir] %>/thresholds.conf"
+Include "<%= @node[:collectd][:dir] %>/filters.conf"
+Include "<%= @node[:collectd][:dir] %>/thresholds.conf"
 
