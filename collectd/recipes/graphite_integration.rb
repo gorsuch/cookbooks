@@ -1,6 +1,5 @@
 include_recipe "graphite"
 
-bash "link_collectd_rrds" do
-  user "root"
-  code "ln -s #{node[:collectd][:rrd_dir]} #{node[:graphite][:rrd_dir]}/collectd"
+link node[:collectd][:rrd_dir] do
+  to "#{node[:graphite][:rrd_dir]}/collectd"
 end
