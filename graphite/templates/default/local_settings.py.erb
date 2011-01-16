@@ -8,12 +8,16 @@ LISTS_DIR = '<%= @node[:graphite][:lists_dir] %>/'
 INDEX_FILE = '<%= @node[:graphite][:index_file] %>'
 WHITELIST_FILE = '<%= @node[:graphite][:whitelist_file] %>'
 LOG_DIR = '<%= @node[:graphite][:log_dir] %>'
+CLUSTER_SERVERS = []
 
 try:
   import rrdtool
   DATA_DIRS = [WHISPER_DIR, RRD_DIR]
 except:
   DATA_DIRS = [WHISPER_DIR]
+
+LOCAL_STORE = Store(DATA_DIRS)
+STORE = Store(DATA_DIRS, remote_hosts=CLUSTER_SERVERS)
 
 #Database settings, sqlite is intended for single-server setups
 DATABASE_ENGINE 	= '<%= @node[:graphite][:db_engine] %>'
