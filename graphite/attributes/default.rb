@@ -26,5 +26,3 @@ default.graphite[:db_username]    = ""
 default.graphite[:db_password]    = ""
 default.graphite[:db_host]        = ""
 default.graphite[:db_port]        = ""
-
-default.apache[:dir]
