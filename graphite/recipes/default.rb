@@ -1,5 +1,6 @@
 include_recipe "python::cairo"
 include_recipe "python::django"
+include_recipe "python::rrdtool"
 
 include_recipe "apache2"
 include_recipe "apache2::mod_wsgi"
