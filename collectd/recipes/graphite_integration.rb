@@ -12,6 +12,7 @@ template "#{node[:collectd][:dir]}/collectd.conf" do
   mode 0644
   owner "root"
   group "root"
+  notifies :restart, "service[collectd]"
 end
 
 template "#{node[:collectd][:dir]}/collection.conf" do
@@ -19,4 +20,5 @@ template "#{node[:collectd][:dir]}/collection.conf" do
   mode 0644
   owner "root"
   group "root"
+  notifies :restart, "service[collectd]"
 end
