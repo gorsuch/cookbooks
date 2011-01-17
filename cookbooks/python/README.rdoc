@@ -1,8 +1,15 @@
 = DESCRIPTION:
 
+A super lightweight Python cookbook, intended to help you install a few packages for use elsewhere.
+
 = REQUIREMENTS:
+
+Tested on Ubuntu 10.04.
 
 = ATTRIBUTES:
 
+The Django root dir can be configured for later reading.
+
 = USAGE:
 
+Include the default recipe to ensure that Python is installed.  Use the other recipes to get specific modules.

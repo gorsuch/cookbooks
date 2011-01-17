@@ -1,8 +1,17 @@
 = DESCRIPTION:
 
+Provides a minimal collectd installation.
+
 = REQUIREMENTS:
+
+Tested on Ubuntu 10.04
 
 = ATTRIBUTES:
 
+Base directories can be configured.
+
 = USAGE:
 
+Include this recipe to get a basic collectd installation.
+
+Include the graphite_integration recipe to get a new configuration that automatically stashes the generated RRD files into the configured Graphite server.

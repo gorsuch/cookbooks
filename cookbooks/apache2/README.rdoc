@@ -1,8 +1,16 @@
 = DESCRIPTION:
+A lightweight Apache cookbook providing simple services.  
 
 = REQUIREMENTS:
 
+Tested on Ubuntu 10.04
+
 = ATTRIBUTES:
+
+The apache root configuration directory can be configured.
 
 = USAGE:
 
+Include the recipe to get a basic configuration running.  The default site will be disabled out of the box.
+
+Feel free to use the apache_site definition in other recipes as needed.

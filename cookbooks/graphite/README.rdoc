@@ -1,8 +1,15 @@
 = DESCRIPTION:
 
+A basic Graphite installation.
+
 = REQUIREMENTS:
+
+Tested on Ubuntu 10.04
 
 = ATTRIBUTES:
 
+Base directories can be configured by altering attributes/default.rb
+
 = USAGE:
 
+Include this recipe, and you'll receive a basic Graphite installation.
